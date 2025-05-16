@@ -55,7 +55,7 @@ form.addEventListener("submit", function(e) {
   e.preventDefault();
   saveStepData();
   const formData = new FormData(form);
-  fetch("https://script.google.com/macros/s/AKfycbx1vag6fqLgs0oQae5gZVHzBS5cp4E0O20olmuqVnr__De_IueKzXVAB-3t41kEM2q1/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbzrU4Q71JonpznVvQpbzzHB2cAXakQyf6RvHfm4fv5B1w8t8OWVzDY8dORfJIUlIe5Uag/exec", {
     method: "POST",
     mode: "no-cors",
     body: new URLSearchParams(formData)
