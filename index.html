@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CeyLoan</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      border-bottom: 1px solid #ccc;
+    }
+
+    header .left {
+      display: flex;
+      align-items: center;
+    }
+
+    header img {
+      height: 30px;
+      margin-right: 10px;
+    }
+
+    header .right button, header .right select {
+      margin-left: 10px;
+      padding: 5px 10px;
+      font-size: 14px;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+
+    .loan-section {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .loan-section input[type=range] {
+      width: 100%;
+    }
+
+    .apply-btn {
+      width: 100%;
+      padding: 12px;
+      background: #00c853;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+
+    .info {
+      margin-top: 15px;
+      padding-bottom: 10px;
+    }
+
+    .highlight {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="left">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/Leaf_icon.svg" alt="Logo">
+      <span><strong>ceyloan</strong></span>
+    </div>
+    <div class="right">
+      <select>
+        <option value="en">🇬🇧</option>
+        <option value="si">සිංහල</option>
+      </select>
+      <button>Login</button>
+      <button>☰</button>
+    </div>
+  </header>
+
+  <!-- Body -->
+  <div class="container">
+    <h2>Fast online loans up to Rs 500,000</h2>
+    <p>Only NIC is required. Get your money in 5 minutes.</p>
+
+    <div class="loan-section">
+      <label for="loanRange"><strong>Loan amount</strong></label><br/>
+      <input type="range" id="loanRange" min="30000" max="500000" step="1000" value="30000">
+      <p>Rs <span id="loanAmount">30,000</span></p>
+
+      <input type="text" placeholder="Enter phone number">
+
+      <div class="info">
+        <p class="highlight">Total repayment amount: Rs <span id="repaymentAmount">33,000</span></p>
+        <p id="installmentInfo">Repayment period: 6 months</p>
+      </div>
+
+      <button class="apply-btn">Apply for a Loan</button>
+    </div>
+
+    <div class="footer">
+      We’re the best Sri Lanka website May 2024 🏆
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    const loanRange = document.getElementById('loanRange');
+    const loanAmountDisplay = document.getElementById('loanAmount');
+    const repaymentAmountDisplay = document.getElementById('repaymentAmount');
+    const installmentInfo = document.getElementById('installmentInfo');
+
+    function formatNumber(num) {
+      return num.toLocaleString('en-LK');
+    }
+
+    function updateLoanInfo() {
+      const amount = parseInt(loanRange.value);
+      loanAmountDisplay.textContent = formatNumber(amount);
+
+      // Calculate interest (10%)
+      const interest = amount * 0.10;
+      const totalRepayment = amount + interest;
+      repaymentAmountDisplay.textContent = formatNumber(totalRepayment);
+
+      // Determine repayment duration
+      let months = 6;
+      if (amount > 120000 && amount <= 170000) {
+        months = 12;
+      } else if (amount > 170000 && amount <= 300000) {
+        months = 24;
+      } else if (amount > 300000) {
+        months = 36;
+      }
+
+      installmentInfo.textContent = Repayment period: ${months} months;
+    }
+
+    // Event listener
+    loanRange.addEventListener('input', updateLoanInfo);
+
+    // Initialize on page load
+    updateLoanInfo();
+  </script>
+
+</body>
+</html>
